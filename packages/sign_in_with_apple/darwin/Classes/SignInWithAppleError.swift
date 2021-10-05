@@ -8,7 +8,6 @@ import Flutter
 import UIKit
 #endif
 
-@available(iOS 13.0, macOS 10.15, *)
 public enum SignInWithAppleGenericError {
     // An error for the case we are running on a not supported platform
     //
@@ -30,15 +29,15 @@ public enum SignInWithAppleGenericError {
             #if os(OSX)
                 plaftorm = "macOS \(ProcessInfo.processInfo.operatingSystemVersion)"
             #elseif os(iOS)
-                plarform = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+                platform = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
             #endif
 
             return FlutterError(
                 code: "not-supported",
-                message: "Unsupported platform version: \(platform)"
-                details: nil,
+                message: "Unsupported platform version: \(platform)",
+                details: nil
             )
-        case: .missingArguments(let call):
+        case .missingArguments(let call):
             return FlutterError(
                 code: "missing-args",
                 message: "Missing arguments",
@@ -47,7 +46,7 @@ public enum SignInWithAppleGenericError {
         case .missingArgument(let call, let key):
             return FlutterError(
                 code: "missing-arg",
-                message: "Argument \(key) is missing"
+                message: "Argument \(key) is missing",
                 details: call.arguments
             )
         }
@@ -117,5 +116,6 @@ public enum SignInWithAppleError {
                 message: message,
                 details: nil
             )
+        }
     }
 }
